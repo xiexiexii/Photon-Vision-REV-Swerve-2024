@@ -232,8 +232,8 @@ public class DriveSubsystem extends SubsystemBase {
     // Converts field relative speeds to chassis speeds
     var SwerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
       fieldRelative
-        ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(-m_gyro.getYaw()))
-        : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
+        ? ChassisSpeeds.fromFieldRelativeSpeeds(-xSpeedDelivered, -ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(-m_gyro.getYaw()))
+        : new ChassisSpeeds(-xSpeedDelivered, -ySpeedDelivered, rotDelivered));
     SwerveDriveKinematics.desaturateWheelSpeeds(SwerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
 
     // The toSwerveModuleStates converts the desired chassis speed to an array of swerve module
